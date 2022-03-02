@@ -4,19 +4,7 @@ import addButton from "../images/add-button.svg";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 
-function Main() {
-
-    function handleEditAvatarClick() {
-        document.querySelector('.popup_avatar').classList.add('popup_open');
-    }
-
-    function handleEditProfileClick() {
-        document.querySelector('.popup_profile').classList.add('popup_open');
-    }
-
-    function handleAddPlaceClick() {
-        document.querySelector('.popup_elements').classList.add('popup_open');
-    }
+function Main(props) {
 
     return (
         <main className="main">
@@ -25,14 +13,14 @@ function Main() {
                     <img className="profile__avatar"
                          src="#"
                          alt="Это Вы"
-                            onClick={handleEditAvatarClick}/>
+                            onClick={props.onEditAvatar}/>
                 </div>
                 <div className="profile__info">
                     <h1 className="profile__info-title">Жак-Ив Кусто</h1>
                     <button className="edit-button opacity button-open-form"
                             type="button"
                             aria-label="изменить"
-                            onClick={handleEditProfileClick}>
+                            onClick={props.onEditProfile}>
                         <img className="edit-button__vector" src={editButton} alt="Изменить"/>
                     </button>
                     <p className="profile__info-subtitle">Исследователь океана</p>
@@ -41,20 +29,37 @@ function Main() {
                 <button className="add-button opacity button-open-form"
                         type="button"
                         aria-label="добавить"
-                        onClick={handleAddPlaceClick}>
+                        onClick={props.onAddPlace}>
                     <img className="add-button__vector" src={addButton} alt="Добавить"/>
                 </button>
             </section>
 
-            <PopupWithForm name={'profile'} title={'Редактировать профиль'}/>
+            <PopupWithForm name={'profile'}
+                           title={'Редактировать профиль'}
+                           isOpen={props.isEditAvatarOpen}
+                           close={props.onClose}
+            />
 
-            <PopupWithForm name={'confirm'} title={'Вы уверены?'}/>
+            <PopupWithForm name={'avatar'}
+                           title={'Обновить аватар'}
+                           isOpen={props.isEditProfileOpen}
+                           close={props.onClose}
+            />
 
-            <PopupWithForm name={'avatar'} title={'Обновить аватар'}/>
+            <PopupWithForm name={'elements'}
+                           title={'Новое место'}
+                           isOpen={props.isAddPlaceOpen}
+                           close={props.onClose}
+            />
 
-            <PopupWithForm name={'elements'} title={'Новое место'}/>
+            {/*<PopupWithForm name={'confirm'}*/}
+            {/*               title={'Вы уверены?'}*/}
+            {/*               isOpen={props.isOpen}*/}
+            {/*/>*/}
 
-            <ImagePopup/>
+            {/*<ImagePopup card={''}*/}
+            {/*            isOpen={''}*/}
+            {/*            onClose={''}/>*/}
 
             {/*<section className="popup popup_elements">*/}
             {/*    <div className="popup__container">*/}

@@ -1,16 +1,19 @@
 import React from "react";
 
-// popup_profile edit-profile-form
+
 function PopupWithForm(props) {
+
     return (
-        <section className={`popup popup_${props.name}`}>
+        <section className={`popup popup_${props.name} ${props.isOpen && "popup_open"}`}>
 
             <div className="popup__container">
                 <button className="exit-button exit-button_popup_profile opacity"
                         type="reset"
                         aria-label="выйти"
                         value="выйти"
-                        name="выйти">
+                        name="выйти"
+                        onClick={props.close}
+                >
                 </button>
                 <form className={`form edit-${props.name}-form`}
                       name="profile_info"

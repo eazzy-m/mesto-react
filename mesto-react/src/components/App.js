@@ -5,11 +5,41 @@ import Footer from "./Footer";
 import Main from "./Main";
 
 function App() {
+
+    const [isEditAvatarOpen, setIsEditAvatarOpen] = React.useState(false);
+    const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
+    const [isAddPlaceOpen, setAddPlaceIsOpen] = React.useState(false);
+
+    function handleEditAvatarClick() {
+        setIsEditAvatarOpen(!isEditAvatarOpen);
+    }
+
+    function handleEditProfileClick() {
+        setIsEditProfileOpen(!isEditProfileOpen);
+    }
+
+    function handleAddPlaceClick() {
+        setAddPlaceIsOpen(!isAddPlaceOpen);
+    }
+
+    function closeAllPopups() {
+        setAddPlaceIsOpen(false);
+        setIsEditProfileOpen(false);
+        setIsEditAvatarOpen(false);
+    }
+
   return (
     <div className="page">
       <Header/>
 
-      <Main/>
+      <Main onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onEditAvatar={handleEditAvatarClick}
+            onClose={closeAllPopups}
+            isEditAvatarOpen={isEditAvatarOpen}
+            isEditProfileOpen={isEditProfileOpen}
+            isAddPlaceOpen={isAddPlaceOpen}
+      />
 
       <Footer/>
 
