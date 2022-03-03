@@ -6,24 +6,28 @@ import PopupWithForm from "./PopupWithForm";
 
 function Main(props) {
 
+    console.log(props.userName, props.userAvatar, props.userDescription)
+
     return (
         <main className="main">
             <section className="profile">
+
                 <div className="profile__overlay">
                     <img className="profile__avatar"
-                         src="#"
                          alt="Это Вы"
-                            onClick={props.onEditAvatar}/>
+                         src={props.userAvatar}
+                         onClick={props.onEditAvatar}/>
                 </div>
+
                 <div className="profile__info">
-                    <h1 className="profile__info-title">Жак-Ив Кусто</h1>
+                    <h1 className="profile__info-title">{props.userName ? props.userName : "Жак - Ив Кусто"}</h1>
                     <button className="edit-button opacity button-open-form"
                             type="button"
                             aria-label="изменить"
                             onClick={props.onEditProfile}>
                         <img className="edit-button__vector" src={editButton} alt="Изменить"/>
                     </button>
-                    <p className="profile__info-subtitle">Исследователь океана</p>
+                    <p className="profile__info-subtitle">{props.userDescription ? props.userDescription :'Исследователь океана'}</p>
                 </div>
 
                 <button className="add-button opacity button-open-form"
@@ -142,7 +146,7 @@ function Main(props) {
 
             </section>
         </main>
-    )
+    );
 }
 
 export default Main;

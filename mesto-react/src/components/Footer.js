@@ -5,7 +5,7 @@ function Footer() {
         <footer className="footer">
             <p className="footer__author">&copy; 2021. Николай Козич</p>
         </footer>
-    )
+    );
 }
 
 export default Footer;
