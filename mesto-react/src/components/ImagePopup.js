@@ -19,7 +19,7 @@ function ImagePopup(props) {
                 </figure>
             </div>
         </section>
-    )
+    );
 }
 
 export default ImagePopup;

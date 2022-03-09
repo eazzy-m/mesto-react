@@ -1,14 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
+import api from "../utils/Api";
 
 function App() {
 
-    const [isEditAvatarOpen, setIsEditAvatarOpen] = React.useState(false);
-    const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
-    const [isAddPlaceOpen, setAddPlaceIsOpen] = React.useState(false);
+    const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
+    const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+    const [isAddPlaceOpen, setAddPlaceIsOpen] = useState(false);
+    const [userData, setUserData] = useState('');
+    const [userDescription, setUserDescription] = useState('');
+    const [userAvatar, setUserAvatar] = useState('');
+    const [cards, setCards] = useState([])
+
+
+    React.useEffect(() => {
+        api.getUserInfoFromServer()
+            .then(user => setUserData(user))
+            .catch(err => {alert(`При загрузке данных с сервера возникла ${err}`)})
+        // Promise.all([api.getUserInfoFromServer(), api.getCardsFromServer()])
+        //     .then(([user, cards]) => {
+        //         setUserName(user);
+        //         setCards(cards);
+        //     }).catch(err => {
+        //     alert(`При загрузке данных с сервера возникла ${err}`);
+        // });
+    }, []);
 
     function handleEditAvatarClick() {
         setIsEditAvatarOpen(!isEditAvatarOpen);
@@ -39,6 +58,10 @@ function App() {
             isEditAvatarOpen={isEditAvatarOpen}
             isEditProfileOpen={isEditProfileOpen}
             isAddPlaceOpen={isAddPlaceOpen}
+            userAvatar={userData.avatar}
+            cards={cards}
+            userName={userData.name}
+            userDescription={userData.about}
       />
 
       <Footer/>
