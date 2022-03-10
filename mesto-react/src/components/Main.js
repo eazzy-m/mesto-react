@@ -64,24 +64,24 @@ function Main(props) {
                            children={(
                                <>
                                    <input className="form__input"
-                                   name="name"
-                                   type="text"
-                                   placeholder="Имя"
-                                   defaultValue=""
-                                   minLength="2"
-                                   maxLength="40"
-                                   id="title-input"
-                                   required/>
+                                          name="name"
+                                          type="text"
+                                          placeholder="Имя"
+                                          defaultValue=""
+                                          minLength="2"
+                                          maxLength="40"
+                                          id="title-input"
+                                          required/>
                                    <span className="form__input-error title-input-error"> </span>
                                    <input className="form__input"
-                                   name="about"
-                                   type="text"
-                                   placeholder="Профессиональная деятельность"
-                                   defaultValue=""
-                                   minLength="2"
-                                   maxLength="200"
-                                   id="subtitle-input"
-                                   required/>
+                                          name="about"
+                                          type="text"
+                                          placeholder="Профессиональная деятельность"
+                                          defaultValue=""
+                                          minLength="2"
+                                          maxLength="200"
+                                          id="subtitle-input"
+                                          required/>
                                    <span className="form__input-error subtitle-input-error"> </span>
                                </>
                            )}
