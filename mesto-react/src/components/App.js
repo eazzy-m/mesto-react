@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
-import api from "../utils/Api";
+import api from "../utils/api";
 
 function App() {
 
     const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
     const [isAddPlaceOpen, setAddPlaceIsOpen] = useState(false);
-    const [isImageOpen, setIsImageOpen] = React.useState(false)
-    const [userData, setUserData] = useState('');
-    const [selectedCard, setSelectedCard] = React.useState({
+    const [isImageOpen, setIsImageOpen] = useState(false)
+    const [userData, setUserData] = useState({});
+    const [selectedCard, setSelectedCard] = useState({
         name: "",
         link: "",
     });
@@ -27,20 +27,20 @@ function App() {
     }, []);
 
     function handleEditAvatarClick() {
-        setIsEditAvatarOpen(!isEditAvatarOpen);
+        setIsEditAvatarOpen(true);
     }
 
     function handleEditProfileClick() {
-        setIsEditProfileOpen(!isEditProfileOpen);
+        setIsEditProfileOpen(true);
     }
 
     function handleAddPlaceClick() {
-        setAddPlaceIsOpen(!isAddPlaceOpen);
+        setAddPlaceIsOpen(true);
     }
 
     function handleImageClick(card) {
         setSelectedCard(card);
-        setIsImageOpen(!isImageOpen);
+        setIsImageOpen(true);
     }
 
     function closeAllPopups() {
@@ -68,7 +68,7 @@ function App() {
             cards={cards}
             userName={userData.name}
             userDescription={userData.about}
-            userId={userData._id}
+            userId={userData.id}
             selectedCard={selectedCard}
       />
 

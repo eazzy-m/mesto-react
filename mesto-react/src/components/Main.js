@@ -37,27 +37,90 @@ function Main(props) {
                 </button>
             </section>
 
-            <PopupWithForm name={'profile'}
-                           title={'Редактировать профиль'}
-                           isOpen={props.isEditAvatarOpen}
-                           close={props.onClose}
-            />
-
             <PopupWithForm name={'avatar'}
                            title={'Обновить аватар'}
+                           isOpen={props.isEditAvatarOpen}
+                           close={props.onClose}
+                           children={(
+                               <>
+                                   <input className="form__input"
+                                          name="name"
+                                          type="url"
+                                          placeholder="url для аватара"
+                                          defaultValue=""
+                                          minLength="2"
+                                          maxLength="40"
+                                          id="title-input"
+                                          required/>
+                                   <span className="form__input-error title-input-error"> </span>
+                               </>
+                           )}
+            />
+
+            <PopupWithForm name={'profile'}
+                           title={'Редактировать профиль'}
                            isOpen={props.isEditProfileOpen}
                            close={props.onClose}
+                           children={(
+                               <>
+                                   <input className="form__input"
+                                   name="name"
+                                   type="text"
+                                   placeholder="Имя"
+                                   defaultValue=""
+                                   minLength="2"
+                                   maxLength="40"
+                                   id="title-input"
+                                   required/>
+                                   <span className="form__input-error title-input-error"> </span>
+                                   <input className="form__input"
+                                   name="about"
+                                   type="text"
+                                   placeholder="Профессиональная деятельность"
+                                   defaultValue=""
+                                   minLength="2"
+                                   maxLength="200"
+                                   id="subtitle-input"
+                                   required/>
+                                   <span className="form__input-error subtitle-input-error"> </span>
+                               </>
+                           )}
             />
 
             <PopupWithForm name={'elements'}
                            title={'Новое место'}
                            isOpen={props.isAddPlaceOpen}
                            close={props.onClose}
+                           children={(
+                               <>
+                                   <input className="form__input"
+                                          name="name"
+                                          type="text"
+                                          placeholder="Название"
+                                          defaultValue=""
+                                          minLength="2"
+                                          maxLength="40"
+                                          id="title-input"
+                                          required/>
+                                   <span className="form__input-error title-input-error"> </span>
+                                   <input className="form__input"
+                                          name="about"
+                                          type="url"
+                                          placeholder="Ссылка на картинку"
+                                          defaultValue=""
+                                          minLength="2"
+                                          maxLength="200"
+                                          id="subtitle-input"
+                                          required/>
+                                   <span className="form__input-error subtitle-input-error"> </span>
+                               </>
+
+                           )}
             />
 
             <section className="elements">
-                {props.cards.map(card => (
-                    <Card key={card._id}
+                {props.cards.map((card, id) => (
+                    <Card key={id}
                           user={props.userId}
                           card={card}
                           onCardClick={props.onCardClick}
