@@ -11,12 +11,13 @@ function App() {
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
     const [isAddPlaceOpen, setAddPlaceIsOpen] = useState(false);
     const [isImageOpen, setIsImageOpen] = useState(false)
+
+    const [cards, setCards] = useState([]);
     const [userData, setUserData] = useState({});
     const [selectedCard, setSelectedCard] = useState({
         name: "",
         link: "",
     });
-    const [cards, setCards] = useState([])
 
     useEffect(() => {
         Promise.all([api.getUserInfoFromServer(), api.getCardsFromServer()])
@@ -60,15 +61,18 @@ function App() {
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleImageClick}
             onClose={closeAllPopups}
+
             isEditAvatarOpen={isEditAvatarOpen}
             isEditProfileOpen={isEditProfileOpen}
             isAddPlaceOpen={isAddPlaceOpen}
             isImageOpen={isImageOpen}
+
             userAvatar={userData.avatar}
-            cards={cards}
             userName={userData.name}
             userDescription={userData.about}
             userId={userData.id}
+
+            cards={cards}
             selectedCard={selectedCard}
       />
 
