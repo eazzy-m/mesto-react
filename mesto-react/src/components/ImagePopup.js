@@ -2,7 +2,7 @@ import React from "react";
 
 function ImagePopup(props) {
     return (
-        <section className={`popup popup_zoom-image ${props.card.link && "popup_open"}`}>
+        <section className={`popup popup_zoom-image ${props.isOpen && "popup_open"}`}>
             <div className="popup__container-zoom">
                 <button className="exit-button exit-button_zoom-image-popup opacity"
                         onClick={props.onClose}
