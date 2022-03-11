@@ -10,7 +10,7 @@ function App() {
     const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
     const [isAddPlaceOpen, setAddPlaceIsOpen] = useState(false);
-    const [isImageOpen, setIsImageOpen] = useState(false)
+    const [isImageOpen, setIsImageOpen] = useState(false);
 
     const [cards, setCards] = useState([]);
     const [userData, setUserData] = useState({});
