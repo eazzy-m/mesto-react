@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
 import api from "../utils/api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
 
@@ -12,17 +13,14 @@ function App() {
     const [isAddPlaceOpen, setAddPlaceIsOpen] = useState(false);
     const [isImageOpen, setIsImageOpen] = useState(false);
 
+    const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
-    const [userData, setUserData] = useState({});
-    const [selectedCard, setSelectedCard] = useState({
-        name: "",
-        link: "",
-    });
+    const [selectedCard, setSelectedCard] = useState({name: "", link: ""});
 
     useEffect(() => {
         Promise.all([api.getUserInfoFromServer(), api.getCardsFromServer()])
             .then(([user, cards]) => {
-                setUserData(user);
+                setCurrentUser(user);
                 setCards(cards)})
             .catch(err => alert(`При загрузке данных с сервера возникла ${err}`));
     }, []);
@@ -53,32 +51,31 @@ function App() {
     }
 
   return (
-    <div className="page">
-      <Header/>
+      <>
+          <CurrentUserContext.Provider value={currentUser}>
+            <div className="page">
+              <Header/>
 
-      <Main onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onCardClick={handleImageClick}
-            onClose={closeAllPopups}
+              <Main onEditAvatar={handleEditAvatarClick}
+                    onEditProfile={handleEditProfileClick}
+                    onAddPlace={handleAddPlaceClick}
+                    onCardClick={handleImageClick}
+                    onClose={closeAllPopups}
 
-            isEditAvatarOpen={isEditAvatarOpen}
-            isEditProfileOpen={isEditProfileOpen}
-            isAddPlaceOpen={isAddPlaceOpen}
-            isImageOpen={isImageOpen}
+                    isEditAvatarOpen={isEditAvatarOpen}
+                    isEditProfileOpen={isEditProfileOpen}
+                    isAddPlaceOpen={isAddPlaceOpen}
+                    isImageOpen={isImageOpen}
 
-            userAvatar={userData.avatar}
-            userName={userData.name}
-            userDescription={userData.about}
-            userId={userData.id}
+                    cards={cards}
+                    selectedCard={selectedCard}
+              />
 
-            cards={cards}
-            selectedCard={selectedCard}
-      />
+              <Footer/>
 
-      <Footer/>
-
-    </div>
+            </div>
+          </CurrentUserContext.Provider>
+      </>
   );
 }
 

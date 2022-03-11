@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card(props) {
 
-    const isOwner = props.card.owner._id === props.user;
+    const user = React.useContext(CurrentUserContext);
+    const isOwner = props.card.owner._id === user._id;
+    const [liked, setLiked] = useState(
+        props.card.likes.some(i => i._id === user._id) // Does the card have a like set by the current user?
+    );
 
     function handleClick() {
         props.onCardClick(props.card);
+    }
+
+    function likeClick() {
+        setLiked(!liked);
+        props.onCardLike(props.card);
     }
 
     return (
@@ -21,7 +31,8 @@ function Card(props) {
         <div className="element__description">
             <h2 className="element__text">{props.card.name}</h2>
             <div className="element__like-container">
-                <button className={"like-button opacity"}
+                <button className={`like-button opacity ${liked && 'like-button_active'}`}
+                        onClick={likeClick}
                         type="button"> </button>
                 <span className="element__like-counter">{props.card.likes.length}</span>
             </div>
