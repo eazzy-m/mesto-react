@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import editButton from "../images/edit-vector.svg";
 import addButton from "../images/add-button.svg";
 import ImagePopup from "./ImagePopup";
@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
 
-    const user = React.useContext(CurrentUserContext);
+    const user = useContext(CurrentUserContext);
 
     return (
         <main className="main">
@@ -18,7 +18,8 @@ function Main(props) {
                     <img className="profile__avatar"
                          alt="Это Вы"
                          src={user.avatar}
-                         onClick={props.onEditAvatar}/>
+                         onClick={props.onEditAvatar}
+                    />
                 </div>
 
                 <div className="profile__info">
@@ -29,7 +30,7 @@ function Main(props) {
                             onClick={props.onEditProfile}>
                         <img className="edit-button__vector" src={editButton} alt="Изменить"/>
                     </button>
-                    <p className="profile__info-subtitle">{user.about || 'Исследователь океана'}</p>
+                    <p className="profile__info-subtitle">{user.about || "Исследователь океана"}</p>
                 </div>
 
                 <button className="add-button opacity button-open-form"
@@ -40,8 +41,8 @@ function Main(props) {
                 </button>
             </section>
 
-            <PopupWithForm name={'avatar'}
-                           title={'Обновить аватар'}
+            <PopupWithForm name={"avatar"}
+                           title={"Обновить аватар"}
                            isOpen={props.isEditAvatarOpen}
                            close={props.onClose}
                            children={(
@@ -60,8 +61,8 @@ function Main(props) {
                            )}
             />
 
-            <PopupWithForm name={'profile'}
-                           title={'Редактировать профиль'}
+            <PopupWithForm name={"profile"}
+                           title={"Редактировать профиль"}
                            isOpen={props.isEditProfileOpen}
                            close={props.onClose}
                            children={(
@@ -90,8 +91,8 @@ function Main(props) {
                            )}
             />
 
-            <PopupWithForm name={'elements'}
-                           title={'Новое место'}
+            <PopupWithForm name={"elements"}
+                           title={"Новое место"}
                            isOpen={props.isAddPlaceOpen}
                            close={props.onClose}
                            children={(
@@ -124,6 +125,8 @@ function Main(props) {
                     <Card key={card._id}
                           card={card}
                           onCardClick={props.onCardClick}
+                          onCardLike={props.onCardLike}
+                          onCardDelete={props.onCardDelete}
                     />
                 ))}
             </section>

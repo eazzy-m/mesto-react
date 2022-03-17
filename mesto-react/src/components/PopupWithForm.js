@@ -13,9 +13,9 @@ function PopupWithForm(props) {
                         value="выйти"
                         name="выйти"
                         onClick={props.close}
-                >
-                </button>
+                />
                 <form className={`form edit-${props.name}-form`}
+                      onSubmit={props.onSubmit}
                       name="profile_info"
                       method="POST"
                       noValidate>

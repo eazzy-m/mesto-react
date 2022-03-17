@@ -42,6 +42,24 @@ function App() {
         setIsImageOpen(true);
     }
 
+    function handleCardLike(card) {
+        // is there already a like on this card
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        // we send a request to the API and get updated card data
+        api.changeLikeCard(card._id, isLiked)
+            .then(newCard => setCards(state => state.map(c => c._id === card._id ? newCard : c)))
+            .catch(err => alert(`При обновлении лайка карточки возникла ${err}`));
+    }
+
+    function handleDeleteCard(card) {
+        api.deleteCardFromServer(card._id)
+            .then(newCard => {
+                const newCardsList = cards.filter(elem => elem._id === card._id ? null : newCard);
+                setCards(newCardsList)})
+            .catch(err => `При удалении карточки возникла ${err}`);
+    }
+
+
     function closeAllPopups() {
         setAddPlaceIsOpen(false);
         setIsEditProfileOpen(false);
@@ -60,6 +78,8 @@ function App() {
                     onEditProfile={handleEditProfileClick}
                     onAddPlace={handleAddPlaceClick}
                     onCardClick={handleImageClick}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleDeleteCard}
                     onClose={closeAllPopups}
 
                     isEditAvatarOpen={isEditAvatarOpen}
