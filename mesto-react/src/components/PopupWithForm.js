@@ -12,7 +12,7 @@ function PopupWithForm(props) {
                         aria-label="выйти"
                         value="выйти"
                         name="выйти"
-                        onClick={props.close}
+                        onClick={props.onClose}
                 />
                 <form className={`form edit-${props.name}-form`}
                       onSubmit={props.onSubmit}

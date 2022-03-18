@@ -5,6 +5,10 @@ import Footer from "./Footer";
 import Main from "./Main";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
+import ImagePopup from "./ImagePopup";
 
 function App() {
 
@@ -56,7 +60,31 @@ function App() {
             .then(newCard => {
                 const newCardsList = cards.filter(elem => elem._id === card._id ? null : newCard);
                 setCards(newCardsList)})
-            .catch(err => `При удалении карточки возникла ${err}`);
+            .catch(err => alert(`При удалении карточки возникла ${err}`));
+    }
+
+    function handleUpdateUserInfo(data) {
+        api.patchUserInfo(data)
+            .then(res => {
+                setCurrentUser(res);
+                closeAllPopups()})
+            .catch(err => alert(`При обновлении данных пользователя возникла ${err}`));
+    }
+
+    function handleUpdateAvatar(data) {
+        api.patchUserAvatar(data)
+            .then(res => {
+                setCurrentUser(res);
+                closeAllPopups()})
+            .catch(err => alert(`При обновлении аватара возникла ${err}`));
+    }
+
+    function handleAddPlace(data) {
+        api.addCardToServer(data)
+            .then(newCard => {
+                setCards([newCard, ...cards]);
+                closeAllPopups()})
+            .catch(err => alert(`При отправке новой карточки вознкла ${err}`));
     }
 
 
@@ -80,16 +108,32 @@ function App() {
                     onCardClick={handleImageClick}
                     onCardLike={handleCardLike}
                     onCardDelete={handleDeleteCard}
-                    onClose={closeAllPopups}
-
-                    isEditAvatarOpen={isEditAvatarOpen}
-                    isEditProfileOpen={isEditProfileOpen}
-                    isAddPlaceOpen={isAddPlaceOpen}
-                    isImageOpen={isImageOpen}
-
                     cards={cards}
-                    selectedCard={selectedCard}
+
               />
+                <EditProfilePopup
+                    isOpen={isEditProfileOpen}
+                    onClose={closeAllPopups}
+                    onUpdateUserInfo={handleUpdateUserInfo}
+                />
+
+                <EditAvatarPopup
+                    isOpen={isEditAvatarOpen}
+                    onClose={closeAllPopups}
+                    onUpdateAvatar={handleUpdateAvatar}
+                />
+
+                <AddPlacePopup
+                    isOpen={isAddPlaceOpen}
+                    onClose={closeAllPopups}
+                    onAddPlace={handleAddPlace}
+                />
+
+                <ImagePopup
+                    card={selectedCard}
+                    isOpen={isImageOpen}
+                    onClose={closeAllPopups}
+                />
 
               <Footer/>
 

@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import editButton from "../images/edit-vector.svg";
 import addButton from "../images/add-button.svg";
-import ImagePopup from "./ImagePopup";
-import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -41,85 +39,6 @@ function Main(props) {
                 </button>
             </section>
 
-            <PopupWithForm name={"avatar"}
-                           title={"Обновить аватар"}
-                           isOpen={props.isEditAvatarOpen}
-                           close={props.onClose}
-                           children={(
-                               <>
-                                   <input className="form__input"
-                                          name="avatar"
-                                          type="url"
-                                          placeholder="url для аватара"
-                                          defaultValue=""
-                                          minLength="2"
-                                          maxLength="40"
-                                          id="avatar-input"
-                                          required/>
-                                   <span className="form__input-error title-input-error"> </span>
-                               </>
-                           )}
-            />
-
-            <PopupWithForm name={"profile"}
-                           title={"Редактировать профиль"}
-                           isOpen={props.isEditProfileOpen}
-                           close={props.onClose}
-                           children={(
-                               <>
-                                   <input className="form__input"
-                                          name="name"
-                                          type="text"
-                                          placeholder="Имя"
-                                          defaultValue=""
-                                          minLength="2"
-                                          maxLength="40"
-                                          id="title-input"
-                                          required/>
-                                   <span className="form__input-error title-input-error"> </span>
-                                   <input className="form__input"
-                                          name="about"
-                                          type="text"
-                                          placeholder="Профессиональная деятельность"
-                                          defaultValue=""
-                                          minLength="2"
-                                          maxLength="200"
-                                          id="subtitle-input"
-                                          required/>
-                                   <span className="form__input-error subtitle-input-error"> </span>
-                               </>
-                           )}
-            />
-
-            <PopupWithForm name={"elements"}
-                           title={"Новое место"}
-                           isOpen={props.isAddPlaceOpen}
-                           close={props.onClose}
-                           children={(
-                               <>
-                                   <input className="form__input"
-                                          name="name"
-                                          type="text"
-                                          placeholder="Название"
-                                          defaultValue=""
-                                          minLength="2"
-                                          maxLength="30"
-                                          id="place-input"
-                                          required/>
-                                   <span className="form__input-error title-input-error"> </span>
-                                   <input className="form__input"
-                                          name="link"
-                                          type="url"
-                                          placeholder="Ссылка на картинку"
-                                          defaultValue=""
-                                          id="url-input"
-                                          required/>
-                                   <span className="form__input-error subtitle-input-error"> </span>
-                               </>
-
-                           )}
-            />
-
             <section className="elements">
                 {props.cards.map(card => (
                     <Card key={card._id}
@@ -130,10 +49,7 @@ function Main(props) {
                     />
                 ))}
             </section>
-            <ImagePopup card={props.selectedCard}
-                        isOpen={props.isImageOpen}
-                        onClose={props.onClose}
-            />
+
         </main>
     );
 }
