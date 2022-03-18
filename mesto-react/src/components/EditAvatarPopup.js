@@ -32,7 +32,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
                    required
                    ref={ref}
             />
-            <span className="form__input-error title-input-error"> </span>
+            <span className="form__input-error title-input-error"/>
         </PopupWithForm>
     )
 }

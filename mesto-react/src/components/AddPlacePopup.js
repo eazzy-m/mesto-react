@@ -43,7 +43,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                    onChange={handleAddCardName}
                    value={name || ""}
             />
-            <span className="form__input-error title-input-error"> </span>
+            <span className="form__input-error title-input-error"/>
             <input className="form__input"
                    name="link"
                    type="url"
@@ -53,7 +53,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
                    onChange={handleAddCardLink}
                    value={link || ""}
             />
-            <span className="form__input-error subtitle-input-error"> </span>
+            <span className="form__input-error subtitle-input-error"/>
         </PopupWithForm>
     )
 }
