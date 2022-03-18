@@ -1,10 +1,8 @@
-import React from "react";
 
-
-function PopupWithForm(props) {
+function PopupWithForm({ isOpen, onSubmit, onClose, name, title, children }) {
 
     return (
-        <section className={`popup popup_${props.name} ${props.isOpen && "popup_open"}`}>
+        <section className={`popup ${isOpen && "popup_open"}`}>
 
             <div className="popup__container">
                 <button className="exit-button exit-button_popup_profile opacity"
@@ -12,16 +10,16 @@ function PopupWithForm(props) {
                         aria-label="выйти"
                         value="выйти"
                         name="выйти"
-                        onClick={props.onClose}
+                        onClick={onClose}
                 />
-                <form className={`form edit-${props.name}-form`}
-                      onSubmit={props.onSubmit}
+                <form className={`form edit-${name}-form`}
+                      onSubmit={onSubmit}
                       name="profile_info"
                       method="POST"
                       noValidate>
                       <div className="form__container">
-                        <h3 className="form__title">{props.title}</h3>
-                          {props.children}
+                        <h3 className="form__title">{title}</h3>
+                          {children}
                         <button className="opacity form__submit" aria-label="Cохранить" type="submit">Cохранить</button>
                     </div>
                 </form>

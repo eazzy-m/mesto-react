@@ -8,10 +8,6 @@ class Api {
         return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
     };
 
-    getDefaultData() {
-        return Promise.all([this.getUserInfoFromServer(), this.getCardsFromServer()]);
-    };
-
     getUserInfoFromServer() {
         return fetch(`${this._baseUrl}/users/me`,{headers: this._headers})
             .then(res => this._checkResponseStatus(res));
@@ -68,7 +64,6 @@ class Api {
         }).then(res => this._checkResponseStatus(res));
     };
 }
-
 
 const token = 'cd258dfe-1ea2-4752-b026-d46a9a2668de';
 const cohortId = 'cohort-34';

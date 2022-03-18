@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -28,23 +28,6 @@ function App() {
                 setCards(cards)})
             .catch(err => alert(`При загрузке данных с сервера возникла ${err}`));
     }, []);
-
-    function handleEditAvatarClick() {
-        setIsEditAvatarOpen(true);
-    }
-
-    function handleEditProfileClick() {
-        setIsEditProfileOpen(true);
-    }
-
-    function handleAddPlaceClick() {
-        setAddPlaceIsOpen(true);
-    }
-
-    function handleImageClick(card) {
-        setSelectedCard(card);
-        setIsImageOpen(true);
-    }
 
     function handleCardLike(card) {
         // is there already a like on this card
@@ -87,6 +70,22 @@ function App() {
             .catch(err => alert(`При отправке новой карточки вознкла ${err}`));
     }
 
+    function handleEditAvatarClick() {
+        setIsEditAvatarOpen(true);
+    }
+
+    function handleEditProfileClick() {
+        setIsEditProfileOpen(true);
+    }
+
+    function handleAddPlaceClick() {
+        setAddPlaceIsOpen(true);
+    }
+
+    function handleImageClick(card) {
+        setSelectedCard(card);
+        setIsImageOpen(true);
+    }
 
     function closeAllPopups() {
         setAddPlaceIsOpen(false);
